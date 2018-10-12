@@ -10,7 +10,7 @@
         <p>
           <strong><%= reply.user.username %></strong> <small><%= time_ago_in_words(reply.created_at) %></small>
           <br/>
-          <%= markdown(reply.reply) %>
+          <%= markdown(reply.reply) || has_role?(:admin) %>
         </p>
       </div>
       <% if reply_author(reply)  %>
