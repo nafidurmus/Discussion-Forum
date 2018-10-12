@@ -1,8 +1,13 @@
 class Channel < ApplicationRecord
+  has_many :discussions
+  has_many :users, through: :discussions
+  resourcify
 
-	has_many :discussions
-	has_many :users, through: :discussions
+  extend FriendlyId
+  friendly_id :channel, use: [:slugged, :finders]
 
-	resourcify
+  def should_generate_new_friendly_id?
+    channel_changed?
+  end
 
 end
